@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Your Song 💗</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ffdde1, #fce4ec);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+            color: #880e4f;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #ad1457;
+        }
+
+        form {
+            background: white;
+            display: inline-block;
+            padding: 25px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ff80ab;
+            width: 250px;
+        }
+
+        input[type="submit"] {
+            background-color: #f06292;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ec407a;
+        }
+
+        .player {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3f8;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+
+        .player h3 {
+            margin-bottom: 15px;
+            color: #d81b60;
+        }
+
+        audio {
+            width: 300px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload a Song You Love 🌷🌷</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Upload & Play">
+    </form>
+
+    {% if song %}
+    <div class="player">
+        <h3>Now Playing: {{ song.title }}</h3>
+        <audio controls autoplay>
+            <source src="{{ song.file.url }}" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+    </div>
+    {% endif %}
+</body>
+</html>

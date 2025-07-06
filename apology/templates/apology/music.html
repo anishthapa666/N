@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Song 🎶</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding-top: 100px;
+        }
+        h1 {
+            color: #d81b60;
+        }
+        audio {
+            margin-top: 30px;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <h1>This one's for you ❤️</h1>
+    <p>Let the music say what words can't...</p>
+    <audio controls autoplay loop>
+        <source src="{% static 'music/your-song.mp3' %}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>

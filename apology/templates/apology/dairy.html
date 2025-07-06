@@ -1,0 +1,13 @@
+{% comment %} {% extends 'apology/base.html' %}
+{% block content %}
+    <h2>My Diary For You 📖</h2>
+    {% for entry in entries %}
+        <div style="border:1px solid #ffb6c1; padding: 10px; margin: 15px; border-radius: 10px;">
+            <h3>{{ entry.title }}</h3>
+            <small>{{ entry.created_at|date:"F d, Y - H:i" }}</small>
+            <p>{{ entry.content }}</p>
+        </div>
+    {% empty %}
+        <p>No diary entries yet... but more are coming 💌</p>
+    {% endfor %}
+{% endblock %} {% endcomment %}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💌💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(to bottom, #c8f4de, #e6fff5);
+      background-attachment: fixed;
+    }
+
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .page {
+      width: 720px;
+      margin: 60px auto;
+      perspective: 1000px;
+      position: relative;
+      z-index: 2;
+      animation: flipIn 1s ease;
+    }
+
+    .notebook {
+      width: 100%;
+      background: #fff0f5;
+      padding: 50px 60px 30px;
+      border-radius: 10px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+      position: relative;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 28px,
+        #f7c0cb 29px
+      );
+      transform-origin: left;
+      animation: openBook 0.8s ease-out;
+    }
+
+    @keyframes flipIn {
+      0% {
+        transform: rotateY(-90deg);
+        opacity: 0;
+      }
+      100% {
+        transform: rotateY(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes openBook {
+      0% {
+        transform: rotateY(-15deg) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: rotateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .editable {
+      outline: none;
+      white-space: pre-wrap;
+      min-height: 500px;
+      font-size: 18px;
+      line-height: 28px;
+      color: #333;
+    }
+
+    .editable:empty::before {
+      content: "Start writing your thoughts here...";
+      color: #aaa;
+    }
+
+    .question {
+      margin-top: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #cc0055;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #ff1493;
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      .page {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .notebook {
+        box-shadow: none;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling flower emojis -->
+  <script>
+    const emojis = ['🌸', '🌼', '🏵️', '💮'];
+    const numFlowers = 30;
+
+    for (let i = 0; i < numFlowers; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+      flower.style.fontSize = (20 + Math.random() * 20) + 'px';
+      flower.style.animationDelay = Math.random() * 5 + 's';
+      flower.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(flower);
+    }
+  </script>
+
+  <div class="page">
+    <div class="notebook">
+      <div class="editable" contenteditable="true" spellcheck="false">
+    you make me feel things like how flowes haru look different and more meaningful like how it brings smiles i gave one to my friend cuz i wanted to buy and gift someone he looked kasto happy...
+        And the color pink i didn't like it ek rati nii but as if you gave it some other meaning it reminds me of youu... There is this sound within that says be patient... I was never good with that.. something about having to put faith in time.. to hold back.. its funny that i can't seem to wait... Even if i waited everything i worry wont go my way.. and i look for distractions.... Going eta uta doing this that.. to speed up the seconds... like if they go by a little faster i can make my wrongs right... I am just trying to be still when i am restless maybe it's not about patience and i need to appreciate this feeling.. i feel that whenever you are happy and in love with someone you get privilege to grieve.. ani i say privilege to grieve because we can only grieve when we have someone we are afraid to lose. Grieve may sound heavy tara tara dont wana to lose you.. so will you give another chance?? I want to know you alot more feel you bit by bit i know its selfish of me to ask this stillll.......
+      </div>
+
+      <div class="question">Can you give me another chance?</div>
+
+      <div class="buttons">
+        <a href="{% url 'yes_page' %}"><button>Yes 💗</button></a>
+        <a href="{% url 'no_page' %}"><button>No 💔</button></a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

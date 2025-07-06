@@ -1,0 +1,9 @@
+{% extends 'apology/base.html' %}
+{% block content %}
+    <h2>Reasons I Like You 💗</h2>
+    <ul>
+        {% for reason in reasons %}
+            <li>{{ reason }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'apology/base.html' %}
+{% block content %}
+    <h2>Will You Forgive Me? 🙏</h2>
+
+    <form action="{% url 'yes_page' %}" method="get" style="display:inline;">
+        <button type="submit">Yes, I forgive you 💖</button>
+    </form>
+
+    <form action="{% url 'no_page' %}" method="get" style="display:inline;">
+        <button type="submit">No 😔</button>
+    </form>
+{% endblock %}

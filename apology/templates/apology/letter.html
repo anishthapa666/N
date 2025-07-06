@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open the Letter 💌</title>
+  <link rel="stylesheet" href="{% static 'apology/letter.css' %}" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("{% static 'apology/images/bg1.jpg' %}") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .home-button button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button button:hover {
+      background-color: #ff1493;
+    }
+
+    .envelope-message {
+      position: absolute;
+      top: 60%; /* slightly lower */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      color: #ff1493;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #fff;
+      pointer-events: none;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* Hide message after envelope opens */
+    #envelope.open .envelope-message {
+      display: none;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      var envelope = $("#envelope");
+
+      $(".heart-button").click(function (event) {
+        event.stopPropagation();
+        envelope.addClass("open").removeClass("close");
+      });
+
+      $("#envelope").click(function () {
+        envelope.addClass("open").removeClass("close");
+      });
+    });
+  </script>
+</head>
+<body class="close">
+  
+  <!-- Home Button -->
+  <a href="{% url 'home' %}" class="home-button">
+    <button>🏠 Enter Home</button>
+  </a>
+
+  <!-- Envelope -->
+  <div id="envelope" class="close">
+    
+    <!-- Message on the outside of the envelope -->
+    <div class="envelope-message">Press to open </div>
+
+    <div class="front flap"></div>
+    <div class="front pocket"></div>
+
+    <!-- Heart trigger -->
+    <div class="heart-section">
+      <div class="heart-button">💖</div>
+      <div class="heart-text">Press the heart</div>
+    </div>
+    
+    <!-- Inside letter -->
+    <div class="letter">
+      <div class="words line1">💖</div>
+      <div class="words line2">Hey NIRUTA,</div>
+      <div class="words line3">I hope that you feeling good ani hope that you like this.... 💗</div>
+      <div class="words line4">From, ANISH</div>
+    </div>
+
+    <!-- Floating hearts -->
+    <div class="hearts">
+      <div class="heart a1"></div>
+      <div class="heart a2"></div>
+      <div class="heart a3"></div>
+    </div>
+  </div>
+
+</body>
+</html>
