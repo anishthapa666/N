@@ -6,19 +6,20 @@
   <title>Open the Letter 💌</title>
   <link rel="stylesheet" href="{% static 'apology/letter.css' %}" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
     body {
       margin: 0;
       padding: 0;
       background: url("{% static 'apology/images/bg1.jpg' %}") no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Quicksand', sans-serif;
     }
 
     .home-button {
       position: absolute;
       top: 30px;
       left: 30px;
-      text-decoration: none;
       z-index: 1000;
     }
 
@@ -40,21 +41,32 @@
 
     .envelope-message {
       position: absolute;
-      top: 60%; /* slightly lower */
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 20px;
       color: #ff1493;
       font-weight: bold;
       text-shadow: 1px 1px 2px #fff;
-      pointer-events: none;
       z-index: 10;
       white-space: nowrap;
+      pointer-events: none;
     }
 
-    /* Hide message after envelope opens */
     #envelope.open .envelope-message {
       display: none;
+    }
+
+    @media (max-width: 768px) {
+      .envelope-message {
+        font-size: 16px;
+        top: 65%;
+      }
+
+      .home-button button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
     }
   </style>
 
@@ -82,9 +94,9 @@
 
   <!-- Envelope -->
   <div id="envelope" class="close">
-    
+
     <!-- Message on the outside of the envelope -->
-    <div class="envelope-message">Press to open </div>
+    <div class="envelope-message">Press to open 💖</div>
 
     <div class="front flap"></div>
     <div class="front pocket"></div>
